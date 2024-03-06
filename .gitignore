@@ -1,0 +1,11 @@
+# Excluir pasta node_modules/
+node_modules/
+
+# Excluir arquivos .log
+*.log
+
+# Excluir arquivos .DS_Store (comuns em sistemas macOS)
+.DS_Store
+
+# Excluir todos os arquivos de um diretório específico
+logs/
