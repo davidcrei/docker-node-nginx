@@ -16,7 +16,28 @@ connection.end()
 
 
 app.get('/', (req,res) => {
-    res.send('<h1>Full Cycle</h1>')
+    let html = '<h1>Full Cycle Rocks!</h1>'
+    const connection = mysql.createConnection(config)
+    const sql = `SELECT * FROM people`
+    connection.query(sql,(error, retorno, fields) => {
+            if (error) {
+                console.log(error);
+                mysql.end();
+                res.send(`<h1>${error}</h1>`);
+            }
+            if (retorno.length > 0) {
+                console.log(retorno);
+                retorno.forEach(element => {
+                    html += `\n<h1>nome: ${element['name']}</h1>`
+                });
+                res.send(html)
+            } else {
+                res.send(html)
+            }
+        }
+    )
+    connection.end()
+    
 })
 
 app.listen(port, ()=> {
