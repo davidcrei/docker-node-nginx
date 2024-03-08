@@ -7,8 +7,27 @@ const config = {
     password: 'root',
     database:'nodedb'
 };
+
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
+
+function checkAndCreateTable() {
+    const createTableSQL = `
+        CREATE TABLE IF NOT EXISTS people (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255) NOT NULL
+        )
+    `;
+    connection.query(createTableSQL, (error) => {
+        if (error) {
+            console.error('Erro ao criar a tabela:', error);
+            throw error;
+        }
+        console.log('Tabela verificada/criada com sucesso!');
+    });
+}
+
+checkAndCreateTable();
 
 const sql = `INSERT INTO people(name) values('David2')`
 connection.query(sql)

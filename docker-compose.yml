@@ -7,9 +7,11 @@ services:
       dockerfile: Dockerfile
     image: app
     container_name: app
+    
     restart: always
     volumes:
       - ./node:/usr/src/app
+      
     networks:
       - node-network
     tty: true
