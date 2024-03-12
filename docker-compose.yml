@@ -11,7 +11,7 @@ services:
     restart: always
     volumes:
       - ./node:/usr/src/app
-      
+       - /usr/src/app/node_modules  # Volume anônimo para os módulos do Node.js
     networks:
       - node-network
     tty: true
